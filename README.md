@@ -101,7 +101,7 @@ python main.py
 
 ### 🔹 Sentiment by Subreddit (Data Science)
 
-[Sentiment by Subreddit](pngs/sentiment_by_subreddit_Data_Science.png)
+![Sentiment by Subreddit](pngs/sentiment_by_subreddit_Data_Science.png)
 
 ### 🔹 Sentiment vs Engagement (Data Science)
 
