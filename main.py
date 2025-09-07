@@ -83,7 +83,8 @@ def extract(topic):
                 post.url
             ])
 
-        df = pd.DataFrame(data, columns=[ "timestamp", "Title", "Text", "subreddit", "score", "comments", "author", "url"])
+        df = pd.DataFrame(data,
+                          columns=["timestamp", "Title", "Text", "subreddit", "score", "comments", "author", "url"])
 
         df["date"] = pd.to_datetime(df["timestamp"], unit="s").dt.strftime('%Y-%b-%d-%H:%M:%S')
         log_progress(f"Data extraction complete for topic: {topic}. Found {len(df)} posts.")
@@ -141,7 +142,7 @@ def perform_sentimental_analysis(df):
         sentiment_df = df.copy()
 
         sentiment_scores = sentiment_df["Text"].apply(sia.polarity_scores)
-        sentiment_df = pd.concat([sentiment_df, sentiment_scores.apply(pd.Series)], axis = 1)
+        sentiment_df = pd.concat([sentiment_df, sentiment_scores.apply(pd.Series)], axis=1)
 
         sentiment_df = sentiment_df.rename(columns={
             "neg": "negative_score",
@@ -174,9 +175,9 @@ def plot_histogram(df):
 
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        
+
         plt.savefig("sentiment_score_distribution.png")
-        
+
         plt.show()
 
         log_progress('Histogram chart successfully plotted.')
@@ -242,10 +243,10 @@ def plot_engagement_metrics(df, topic):
         ax2.grid(True, alpha=0.3)
 
         plt.tight_layout()
-        
+
         safe_topic = topic.replace(" ", "_")
         plt.savefig(f"engagement_metrics_{safe_topic}.png")
-        
+
         plt.show()
 
         log_progress('Engagement metrics chart plotted.')
@@ -282,11 +283,9 @@ def plot_sentiment_vs_engagement(df, topic):
         ax2.grid(True, alpha=0.3)
 
         plt.tight_layout()
-        
-        safe_topic1 = topic1.replace(" ", "_")
-        safe_topic2 = topic2.replace(" ", "_")
-        
-        plt.savefig(f"Comparison_between_{safe_topic1}_and_{safe_topic2}.png")
+
+        safe_topic = topic.replace(" ", "_")
+        plt.savefig(f"sentiment_engagement_{safe_topic}.png")
 
         plt.show()
 
@@ -321,10 +320,10 @@ def sentiment_by_subreddit(df, topic):
         plt.xlabel("Average Sentiment Score")
 
         plt.tight_layout()
-        
+
         safe_topic = topic.replace(" ", "_")
         plt.savefig(f"sentiment_by_subreddit_{safe_topic}.png")
-        
+
         plt.show()
     except Exception as e:
         log_progress(f"Error plotting sentiment by subreddit: {str(e)}")
@@ -369,9 +368,11 @@ def compare_topics(df1_sentiment, topic1):
 
         plt.grid(True, alpha=0.3, axis='y')
         plt.tight_layout()
-        plt.show()
+        safe_topic1 = topic1.replace(" ", "_")
+        safe_topic2 = topic2.replace(" ", "_")
 
-        plt.savefig(f"Comparison_between_{topic1}_and_{topic2}.png")
+        plt.savefig(f"Comparison_between_{safe_topic1}_and_{safe_topic2}.png")
+        plt.show()
 
         log_progress("Comparison chart for two topics successfully plotted.")
 
@@ -411,13 +412,13 @@ def main():
 
     while True:
         print(
-            "CHOOSE AN ANALYSIS:\n" 
-            "1:  Sentiment distribution (Histogram)\n" 
-            "2:  Subreddit distribution - Where topic is discussed\n" 
-            "3:  Engagement metrics - Upvotes and comments analysis\n" 
-            "4:  Sentiment vs Engagement correlation\n" 
-            "5:  Average sentiment by subreddit\n" 
-            "6:  Compare with another topic\n" 
+            "CHOOSE AN ANALYSIS:\n"
+            "1:  Sentiment distribution (Histogram)\n"
+            "2:  Subreddit distribution - Where topic is discussed\n"
+            "3:  Engagement metrics - Upvotes and comments analysis\n"
+            "4:  Sentiment vs Engagement correlation\n"
+            "5:  Average sentiment by subreddit\n"
+            "6:  Compare with another topic\n"
             "7:  Change the topic\n"
             "8:  Exit"
         )
@@ -460,4 +461,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
