@@ -174,8 +174,9 @@ def plot_histogram(df):
 
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-
+        
         plt.savefig("sentiment_score_distribution.png")
+        
         plt.show()
 
         log_progress('Histogram chart successfully plotted.')
@@ -206,7 +207,9 @@ def plot_subreddit_distribution(df, topic):
         plt.grid(True, alpha=0.3, axis='y')
         plt.tight_layout()
 
-        plt.savefig(f"subreddit_distribution_{topic}.png")
+        safe_topic = topic.replace(" ", "_")
+        plt.savefig(f"subreddit_distribution_{safe_topic}.png")
+
         plt.show()
 
         log_progress('Subreddit distribution chart plotted with vertical bars.')
@@ -239,8 +242,10 @@ def plot_engagement_metrics(df, topic):
         ax2.grid(True, alpha=0.3)
 
         plt.tight_layout()
-        plt.savefig(f"engagement_metrics_{topic}.png")
-
+        
+        safe_topic = topic.replace(" ", "_")
+        plt.savefig(f"engagement_metrics_{safe_topic}.png")
+        
         plt.show()
 
         log_progress('Engagement metrics chart plotted.')
@@ -277,7 +282,11 @@ def plot_sentiment_vs_engagement(df, topic):
         ax2.grid(True, alpha=0.3)
 
         plt.tight_layout()
-        plt.savefig(f"sentiment_engagement_{topic}.png")
+        
+        safe_topic1 = topic1.replace(" ", "_")
+        safe_topic2 = topic2.replace(" ", "_")
+        
+        plt.savefig(f"Comparison_between_{safe_topic1}_and_{safe_topic2}.png")
 
         plt.show()
 
@@ -312,7 +321,10 @@ def sentiment_by_subreddit(df, topic):
         plt.xlabel("Average Sentiment Score")
 
         plt.tight_layout()
-        plt.savefig(f"sentiment_by_subreddit_{topic}.png")
+        
+        safe_topic = topic.replace(" ", "_")
+        plt.savefig(f"sentiment_by_subreddit_{safe_topic}.png")
+        
         plt.show()
     except Exception as e:
         log_progress(f"Error plotting sentiment by subreddit: {str(e)}")
@@ -448,3 +460,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
