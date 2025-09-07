@@ -1,11 +1,28 @@
-# 📊 Reddit Sentimental Analysis
+# 📊 Reddit Sentimental Analysis Project
 
-This project extracts Reddit posts on any topic, performs **text cleaning**, runs **sentiment analysis** using **NLTK VADER**, and generates **visualizations**.
-It also saves results to:
+**Reddit Sentimental Analysis** helps analyze thousands of Reddit posts and comments on any chosen topic, classifying them as positive, negative, or neutral using sentiment scores derived from NLTK’s VADER. The project extracts data directly from Reddit’s API, cleans and processes the text, and then generates insightful visualizations to highlight sentiment trends, engagement patterns, and subreddit-level discussions.
 
-* **CSV files**
-* **MySQL database**
-* **Charts as PNG images**
+This repository contains a beginner-friendly implementation of:
+   * 🔍 **Reddit Data Extraction** (using PRAW API)
+   * 🧹 **Data Cleaning & Preprocessing**
+   * 😀 **Sentiment Analysis** with NLTK’s VADER
+   * 📊 **Visualizations** (Matplotlib + Seaborn)
+   * 💾 **Data Storage** (CSV + MySQL database)
+---
+
+## 📁 Project Structure
+
+```
+reddit-sentiment-analysis/  
+├── 📄 main.py                  # Main script to execute the project  
+├── 📄 api_key.py               # Reddit API credentials (⚠️ add to .gitignore)  
+├── 📄 database_credentials.py  # Database connection settings (⚠️ add to .gitignore)  
+├── 📄 requirements.txt         # Python dependencies list  
+├── 📂 pngs/                    # Folder containing generated visualizations  
+├── 📂 data/                    # Folder for generated CSV files (optional)  
+├── 📄 README.md                # Project documentation  
+└── 📄 .gitignore               # Specifies files to ignore in version control  
+```
 
 ---
 
@@ -65,14 +82,6 @@ python main.py
 ```
 
 * Enter a topic when prompted (e.g., `Data Science`, `Machine Learning`).
-* The program will:
-
-  * Extract Reddit posts
-  * Clean & preprocess data
-  * Perform sentiment analysis
-  * Save CSV outputs
-  * Save results to MySQL
-  * Generate charts
 
 ---
 
@@ -116,23 +125,3 @@ python main.py
 ![Subreddit Distribution](pngs/subreddit_distribution_Data_Science.png)
 
 ---
-
-## 📌 Features
-
-* Histogram of sentiment scores
-* Subreddit distribution of discussions
-* Engagement metrics (Upvotes & Comments)
-* Sentiment vs Engagement correlation
-* Average sentiment per subreddit
-* Compare two topics side by side
-
----
-
-## 🚀 Next Steps
-
-* Add more advanced sentiment models (Transformers, BERT).
-* Deploy as a dashboard (Streamlit / Dash).
-* Automate periodic runs (cron jobs).
-
----
-
